@@ -216,10 +216,7 @@ font-size: 10px;
 width: 344px;}
 .hamburger{
     display: none;
-<<<<<<< HEAD
     cursor: pointer;
-=======
->>>>>>> a9ea26ae30db4ba8f20e089dc890cd7ae9986435
 }
 .info div{
     word-break: break-all;
