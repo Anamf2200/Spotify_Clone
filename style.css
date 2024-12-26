@@ -275,13 +275,6 @@ margin-bottom: 44px;
     gap: 12px;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
-    cursor: pointer;
-}
-.range input{
-    cursor: pointer;
-=======
->>>>>>> a9ea26ae30db4ba8f20e089dc890cd7ae9986435
 }
 .songtime{
     width: 125px;
@@ -323,13 +316,6 @@ margin-bottom: 44px;
         right: 31px;
         width: 29px;
     }
-<<<<<<< HEAD
-    .cardContainer{
-        max-height: 60vh;
-
-    }
-=======
->>>>>>> a9ea26ae30db4ba8f20e089dc890cd7ae9986435
    
     .right{
         width: 100vw;
@@ -370,13 +356,7 @@ margin-bottom: 44px;
     }
 }
 
-<<<<<<< HEAD
-@media (max-width:500px) {
-.card{
-    width: auto;
-=======
 @media (max-width:400px) {
 .card{
     width: 80vw;
->>>>>>> a9ea26ae30db4ba8f20e089dc890cd7ae9986435
 }}
