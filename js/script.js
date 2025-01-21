@@ -168,7 +168,7 @@ playMusic(songs[0])
 
 async function main() {
     // Get the songs
-    await getsongs("songs/ncs"); // Get songs from server
+    await getsongs("songs/angrymood"); // Get songs from server
     playMusic(songs[0], true); // Automatically play the first song
 
 
