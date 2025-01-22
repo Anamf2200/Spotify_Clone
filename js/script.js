@@ -122,7 +122,7 @@ async function DisplayAlbums() {
             let folder = e.href.split('/').slice(-1)[0];      
 
             if (folder === "songs") {
-                // console.log("Skipping base songs folder");
+                console.log("Skipping base songs folder");
                 continue;
             }
 
