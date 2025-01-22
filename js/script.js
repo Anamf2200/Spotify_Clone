@@ -18,7 +18,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/${currFolder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -32,7 +32,7 @@ async function getsongs(folder) {
         const element = as[index];
         // console.log(element)
         if (element.href.endsWith('.mp3')) {
-            songs.push(decodeURIComponent(element.href.split(`/${currFolder}/`)[1]));
+            songs.push(decodeURIComponent(element.href.split(`/${folder}/`)[1]));
         }
 
     }
@@ -104,32 +104,34 @@ const playMusic = (track, pause = false) => {
 
 
 
+
+
 async function DisplayAlbums() {
-    let a = await fetch(`http://127.0.0.1:5500/songs/`)
-    
+    let a = await fetch(`/songs/`); // Fetch the songs directory
     let response = await a.text();
-    
     let div = document.createElement('div');
     div.innerHTML = response;
-    let anchor = div.getElementsByTagName('a')
-    let CardContianer= document.querySelector('.cardContainer')
+    let anchor = div.getElementsByTagName('a');
+    let CardContianer = document.querySelector('.cardContainer');
     let anchors = Array.from(anchor); // Convert HTMLCollection to Array
+
     for (let index = 0; index < anchors.length; index++) {
-        const e = anchors[index]; 
-        // console.log(e.href)
-    
-        if (e.href.includes("/songs")) {
-    
-            /// Get the folder name from the URL
-            let folder = e.href.split('/').slice(-1)[0]; // Ensure this is the correct folder extraction
-            // console.log(folder);
-    
+        const e = anchor[index];
+
+        if (e.href.includes("/songs") && !e.href.includes(".htaccess")) {
+            let folder = e.href.split('/').slice(-1)[0];      
+
+            if (folder === "songs") {
+                // console.log("Skipping base songs folder");
+                continue;
+            }
+
             try {
                 let response = await fetch(`/songs/${folder}/info.json`);
                 let data = await response.json();
-                // console.log(data);
-    
-                // Append the new card to the CardContianer
+                console.log(folder);
+
+                // Append the new card to the CardContainer
                 CardContianer.innerHTML += `
                     <div data-folder="${folder}" class="card">
                         <div class="play">
@@ -143,14 +145,13 @@ async function DisplayAlbums() {
                     </div>
                 `;
             } catch (error) {
-                // console.error('Error fetching metadata for folder:', folder, error);
+                console.error(`Error fetching /songs/${folder}/info.json:`, error);
             }
         }
     }
-    
-
        //load the playlist whenever the card is clicked
-       Array.from(document.getElementsByClassName("card")).forEach(e => {
+
+    Array.from(document.getElementsByClassName("card")).forEach(e => {
 
         // console.log(e)
         e.addEventListener('click', async item => {
@@ -161,9 +162,12 @@ playMusic(songs[0])
         })
 
     })
-    // console.log(div)
-
 }
+
+
+
+
+
 
 
 async function main() {
@@ -283,7 +287,6 @@ document.querySelector('.volume>img').addEventListener('click',e=>{
 }
 
 main()
-
 
 
 
