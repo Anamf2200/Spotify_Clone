@@ -1,7 +1,6 @@
 let currentSong = new Audio();
 let songs;
 let currFolder;
-const basePath = window.location.origin + window.location.pathname.replace(/\/$/, '');
 
 
 function secondsToMinutesSeconds(seconds) {
@@ -20,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`${basePath}/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
