@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`https://anamf2200.github.io/Spotify_Clone/songs/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
