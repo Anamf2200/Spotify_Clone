@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`/Spotify_Clone/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -33,7 +33,7 @@ async function getsongs(folder) {
         const element = as[index];
         // console.log(element)
         if (element.href.endsWith('.mp3')) {
-            songs.push(decodeURIComponent(element.href.split(`/${folder}/`)[1]));
+            songs.push(decodeURIComponent(element.href.split(`/Spotify_Clone/${folder}/`)[1]));
 
         }
        
@@ -49,14 +49,14 @@ async function getsongs(folder) {
 
 
         // console.log(cleaned)
-        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="/img/music.svg" alt="">
+        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="/Spotify_Clone/img/music.svg" alt="">
                             <div class="info">
                                 <div> ${cleaned}</div>
                                 <div>Harry</div>
                             </div>
                             <div class="playnow">
                                 <span>Play Now</span>
-                                <img class="invert" src="/img/play.svg" alt="">
+                                <img class="invert" src="/Spotify_Clone/img/play.svg" alt="">
                             </div> </li>`;
     }
 
@@ -91,10 +91,10 @@ async function getsongs(folder) {
 }
 const playMusic = (track, pause = false) => {
     const encodedTrack = encodeURIComponent(track); // Encode the track
-    currentSong.src = `/${currFolder}/` + encodedTrack;
+    currentSong.src = `/Spotify_Clone/${currFolder}/` + encodedTrack;
     if (!pause) {
         currentSong.play();
-        play.src = 'img/pause.svg';
+        play.src = '/Spotify_Clone/img/pause.svg';
     }
     // const filePath = '/songs/' + encodedTrack;
 
@@ -112,7 +112,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function DisplayAlbums() {
-    let a = await fetch(`/songs/`);
+    let a = await fetch(`/Spotify_Clone/songs/`);
         let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
@@ -132,9 +132,9 @@ async function DisplayAlbums() {
             }
 
             try {
-                let response = await fetch(`/songs/${folder}/info.json`);
+                let response = await fetch(`/Spotify_Clone/songs/${folder}/info.json`);
                 let data = await response.json();
-                console.log(folder);
+                // console.log(folder);
 
                 // Append the new card to the CardContainer
                 CardContianer.innerHTML += `
@@ -144,13 +144,13 @@ async function DisplayAlbums() {
                                 <path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-width="1.5" fill="#000" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <img src="/songs/${folder}/cover.jpeg" alt="${folder}">
+                        <img src="/Spotify_Clone/songs/${folder}/cover.jpeg" alt="${folder}">
                         <h2>${data.title}</h2>
                         <p>${data.Description}</p>
                     </div>
                 `;
             } catch (error) {
-                console.error(`Error fetching /songs/${folder}/info.json:`, error);
+                console.error(`Error fetching /Spotify_Clone/songs/${folder}/info.json:`, error);
             }
         }
     }
@@ -160,7 +160,7 @@ async function DisplayAlbums() {
 
         // console.log(e)
         e.addEventListener('click', async item => {
-            console.log(item,item.currentTarget.dataset)
+            // console.log(item,item.currentTarget.dataset)
             
             songs = await getsongs(`songs/${item.currentTarget.dataset.folder}`)
           
@@ -194,11 +194,11 @@ async function main() {
     play.addEventListener('click', () => {
         if (currentSong.paused) {
             currentSong.play();
-            play.src = "/img/pause.svg"
+            play.src = "/Spotify_Clone/img/pause.svg"
         }
         else {
             currentSong.pause();
-            play.src = "/img/play.svg"
+            play.src = "/Spotify_Clone/img/play.svg"
 
         }
     })
