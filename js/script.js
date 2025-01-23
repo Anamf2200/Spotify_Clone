@@ -94,7 +94,7 @@ const playMusic = (track, pause = false) => {
     currentSong.src = `/${currFolder}/` + encodedTrack;
     if (!pause) {
         currentSong.play();
-        play.src = '/img/pause.svg';
+        play.src = 'img/pause.svg';
     }
     // const filePath = '/songs/' + encodedTrack;
 
