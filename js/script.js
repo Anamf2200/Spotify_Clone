@@ -91,7 +91,7 @@ async function getsongs(folder) {
 }
 const playMusic = (track, pause = false) => {
     const encodedTrack = encodeURIComponent(track); // Encode the track
-    currentSong.src = `https://anamf2200.github.io/Spotify_Clone/${currFolder}/` + encodedTrack;
+    currentSong.src = `/${currFolder}/` + encodedTrack;
     if (!pause) {
         currentSong.play();
         play.src = 'img/pause.svg';
