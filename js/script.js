@@ -90,7 +90,7 @@ async function getsongs(folder) {
 }
 const playMusic = (track, pause = false) => {
     const encodedTrack = encodeURIComponent(track); // Encode the track
-    currentSong.src = `./${currFolder}/` + encodedTrack;
+    currentSong.src = `/${currFolder}/` + encodedTrack;
     if (!pause) {
         currentSong.play();
         play.src = 'img/pause.svg';
@@ -111,7 +111,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function DisplayAlbums() {
-    let a = await fetch(`./songs/`); // Fetch the songs directory
+    let a = await fetch(`/songs/`); // Fetch the songs directory
     let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
@@ -131,7 +131,7 @@ async function DisplayAlbums() {
             }
 
             try {
-                let response = await fetch(`./songs/${folder}/info.json`);
+                let response = await fetch(`/songs/${folder}/info.json`);
                 let data = await response.json();
                 console.log(folder);
 
