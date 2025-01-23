@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`./songs/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -89,7 +89,7 @@ async function getsongs(folder) {
 }
 const playMusic = (track, pause = false) => {
     const encodedTrack = encodeURIComponent(track); // Encode the track
-    currentSong.src = `/Spotify_Clone/${currFolder}/` + encodedTrack;
+    currentSong.src = `/${currFolder}/` + encodedTrack;
     if (!pause) {
         currentSong.play();
         play.src = 'img/pause.svg';
