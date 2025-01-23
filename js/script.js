@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`https://anamf2200.github.io/Spotify_Clone/songs/`);
+    let a = await fetch(`https://anamf2200.github.io/Spotify_Clone/songs/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -44,7 +44,9 @@ async function getsongs(folder) {
     songUL.innerHTML = ""
 
     for (const song of songs) {
-        let cleaned = decodeURI(song).replaceAll('%20', "")
+        // let cleaned = decodeURI(song).replaceAll('%20', "")
+        let cleaned = decodeURIComponent(song).replace('%20', " ");
+
 
         // console.log(cleaned)
         songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="img/music.svg" alt="">
