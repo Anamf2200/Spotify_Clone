@@ -111,7 +111,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function DisplayAlbums() {
-    let a = await fetch(`./Spotify_Clone_main/songs/`); // Fetch the songs directory
+    let a = await fetch(`./songs/`); // Fetch the songs directory
     let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
