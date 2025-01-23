@@ -1,6 +1,8 @@
 let currentSong = new Audio();
 let songs;
 let currFolder;
+const basePath = window.location.origin + window.location.pathname.replace(/\/$/, '');
+
 
 function secondsToMinutesSeconds(seconds) {
     if (isNaN(seconds) || seconds < 0) {
@@ -18,7 +20,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`./${folder}/`);
+    let a = await fetch(`${basePath}/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -35,8 +37,7 @@ async function getsongs(folder) {
             songs.push(decodeURIComponent(element.href.split(`/${folder}/`)[1]));
 
         }
-        console.log(`Track URL: /${currFolder}`);
-
+       
 
     }
 
@@ -110,7 +111,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function DisplayAlbums() {
-    let a = await fetch(`./songs/`); // Fetch the songs directory
+    let a = await fetch(`./Spotify_Clone_main/songs/`); // Fetch the songs directory
     let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
