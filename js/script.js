@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`https://anamf2200.github.io/Spotify_Clone/songs/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -89,7 +89,7 @@ async function getsongs(folder) {
 }
 const playMusic = (track, pause = false) => {
     const encodedTrack = encodeURIComponent(track); // Encode the track
-    currentSong.src = `/${currFolder}/` + encodedTrack;
+    currentSong.src = `https://anamf2200.github.io/Spotify_Clone/${currFolder}/` + encodedTrack;
     if (!pause) {
         currentSong.play();
         play.src = 'img/pause.svg';
@@ -110,7 +110,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function DisplayAlbums() {
-    let a = await fetch(`/songs/`); // Fetch the songs directory
+    let a = await fetch(`./songs/`); // Fetch the songs directory
     let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
@@ -130,7 +130,7 @@ async function DisplayAlbums() {
             }
 
             try {
-                let response = await fetch(`songs/${folder}/info.json`);
+                let response = await fetch(`./songs/${folder}/info.json`);
                 let data = await response.json();
                 console.log(folder);
 
@@ -148,7 +148,7 @@ async function DisplayAlbums() {
                     </div>
                 `;
             } catch (error) {
-                console.error(`Error fetching /songs/${folder}/info.json:`, error);
+                console.error(`Error fetching ./songs/${folder}/info.json:`, error);
             }
         }
     }
@@ -175,7 +175,7 @@ playMusic(songs[0])
 
 async function main() {
     // Get the songs
-    await getsongs("songs/angrymood"); // Get songs from server
+    await getsongs("songs/angrymood"); 
     playMusic(songs[0], true); // Automatically play the first song
 
 
