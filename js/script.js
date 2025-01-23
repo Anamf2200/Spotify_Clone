@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`/Spotify_Clone/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement('div');
@@ -112,7 +112,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function DisplayAlbums() {
-    let a = await fetch(`./songs/`); // Fetch the songs directory
+    let a = await fetch(`/Spotify_Clone/songs/`); // Fetch the songs directory
     let response = await a.text();
     let div = document.createElement('div');
     div.innerHTML = response;
@@ -132,7 +132,7 @@ async function DisplayAlbums() {
             }
 
             try {
-                let response = await fetch(`./songs/${folder}/info.json`);
+                let response = await fetch(`songs/${folder}/info.json`);
                 let data = await response.json();
                 console.log(folder);
 
@@ -150,7 +150,7 @@ async function DisplayAlbums() {
                     </div>
                 `;
             } catch (error) {
-                console.error(`Error fetching ./songs/${folder}/info.json:`, error);
+                console.error(`Error fetching /songs/${folder}/info.json:`, error);
             }
         }
     }
